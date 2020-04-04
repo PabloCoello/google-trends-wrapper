@@ -1,3 +1,8 @@
+from pytrends.request import TrendReq
+import pandas as pd
+import operator
+
+
 class googleTrends():
     def __init__(self, conf):
         self.conf = conf
@@ -7,12 +12,17 @@ class googleTrends():
         '''
         Returns world panel data
         '''
+        if self.conf['ggt_state']!=None:
+            resolution = 'REGION'
+        else:
+            resolution = 'COUNTRY'
+            
         world_data = self.get_regional_data(
-            resolution = 'COUNTRY',
+            resolution = resolution,
             start_date=self.conf['start_date'],
             end_date=self.conf['end_date'],
             key_word=self.conf['ggt_key_word'],
-            state=None
+            state=self.conf['ggt_state']
         )
         wdata = {}
         searches = {}
@@ -20,7 +30,6 @@ class googleTrends():
             searches[geo[1]['geoCode']] = self.get_searches(
                 key_word=self.conf['ggt_key_word'],
                 state=geo[1]['geoCode'],
-                region=None,
                 start_date=self.conf['start_date'],
                 end_date=self.conf['end_date']
             )
@@ -57,14 +66,11 @@ class googleTrends():
                                         inc_geo_code=True)
         return(df)
 
-    def get_searches(self, key_word, state, region, start_date, end_date):
+    def get_searches(self, key_word, state, start_date, end_date):
         '''
         Returns temporal result for an unique individual.
         '''
-        if region != None:
-            geo = '{}-{}'.format(state,region)
-        else:
-            geo = state
+        geo = state
             
         pytrends = TrendReq()
         pytrends.build_payload([key_word], 
@@ -101,8 +107,11 @@ class googleTrends():
 
 if __name__ == '__main__':
     conf = {
-    'ggt_key_word':
-    'ggt_state':
-    'start_date':
-    'end_date':
+    'ggt_key_word':'Coronavirus',
+    'ggt_state':'ES',#None
+    'start_date':'2020-01-01',
+    'end_date':'2020-03-31'
     }
+
+    trend = googleTrends(conf)
+    df = trend.panel
