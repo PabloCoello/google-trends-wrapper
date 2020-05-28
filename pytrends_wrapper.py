@@ -107,10 +107,10 @@ class googleTrends():
 
 if __name__ == '__main__':
     conf = {
-    'ggt_key_word':'Coronavirus',
-    'ggt_state':'ES',#None
-    'start_date':'2020-01-01',
-    'end_date':'2020-03-31'
+    'ggt_key_word':'Incendios',
+    'ggt_state':'PT',#None
+    'start_date':'2017-10-01',
+    'end_date':'2017-10-31'
     }
 
     trend = googleTrends(conf)
