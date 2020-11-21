@@ -8,7 +8,7 @@ while :
 	echo "2. Cheatsheet"
 	echo "3. Get data"
 	echo "4. EXIT"
-	echo -n "Choose one option [1 - 3]: "
+	echo -n "Choose one option [1 - 4]: "
 	read opcion
 
 function build_dev_image () {
@@ -16,7 +16,7 @@ function build_dev_image () {
 }
 
 function show_cheatsheet () {
-	docker run --rm -it -v  "${DM_DIR}":"${WO_DIR}" --network host "${DK_IMG}" Rscript "${WO_DIR}"/generate_design.R run
+	nano ./cheatsheet/cheatsheet.txt
 }
 
 function get_data () {
