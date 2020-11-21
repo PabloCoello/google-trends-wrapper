@@ -2,6 +2,7 @@ from pytrends.request import TrendReq
 import pandas as pd
 import operator
 import time
+import json
 
 
 class googleTrends():
@@ -107,12 +108,9 @@ class googleTrends():
         return(toret)
 
 if __name__ == '__main__':
-    conf = {
-    'ggt_key_word':'Coronavirus',
-    'ggt_state':'ES',#None
-    'start_date':'2020-01-01',
-    'end_date':'2020-01-31'
-    }
+    with open('./conf/conf.json') as f:
+        conf = json.load(f)
 
     trend = googleTrends(conf)
     df = trend.panel
+    df.to_excel('./Results'+conf['ggt_key_words']+'_'+conf['ggt_state']+'.xlsx')
