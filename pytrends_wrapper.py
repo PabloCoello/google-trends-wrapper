@@ -113,4 +113,4 @@ if __name__ == '__main__':
 
     trend = googleTrends(conf)
     df = trend.panel
-    df.to_excel('./Results'+conf['ggt_key_words']+'_'+conf['ggt_state']+'.xlsx')
+    df.to_excel('./Results/'+conf['ggt_key_word']+'_'+conf['ggt_state']+'.xlsx')
