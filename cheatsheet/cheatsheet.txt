@@ -26,7 +26,7 @@ OUTPUT VARIABLES:
 
     -adjusted_index:
         type: float
-        description: Google Trends index adjusted bay means of IMF working paper (Futoshi Narita and Rujun Yin) procedure
+        description: Google Trends index adjusted by means of IMF working paper (Futoshi Narita and Rujun Yin) procedure
                      to adapt data to panel data format.
         format: numeric
 
