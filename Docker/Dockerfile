@@ -7,7 +7,7 @@ RUN apt-get update && apt-get install -y \
     cmake \
     software-properties-common \
     python-setuptools \
-    python3.8 \
+    python3 \
     python3-pip \
     libpq-dev 
 
